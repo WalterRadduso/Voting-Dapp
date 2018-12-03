@@ -4,31 +4,35 @@ class vote extends React.Component {
     constructor(props) {
         super(props);
 
-        this.voteYes = this.voteYes.bind(this);
-        this.voteNo = this.voteNo.bind(this);
         this.voteButtons = this.voteButtons.bind(this);
         this.voteChoose = this.voteChoose.bind(this);
     }
 
-    voteYes() {
-        this.props.castVote(1);
-    }
-
-    voteNo() {
-        this.props.castVote(2);
-    }
-
+    /**
+     * Show this html if the user has no voted yet.
+     */
     voteButtons() {
         return (
             <div>
                 <p>¿Do you want to vote?</p>
 
-                <button onClick={this.voteYes} className='btn btn-primary'>Yes</button>
-                <button onClick={this.voteNo} className='btn btn-primary'>No</button>
+                {this.props.candidates.map((candidate) => {
+                    return (
+                        <button
+                            key={candidate.id.toNumber()}
+                            onClick={() => this.props.castVote(candidate.id.toNumber())}
+                            className='btn btn-primary'>
+                            {candidate.name}
+                        </button>
+                    )
+                })}
             </div>
         )
     }
 
+    /**
+     * Show this html if the user already voted.
+     */
     voteChoose() {
         return (
             <div>

@@ -12,6 +12,10 @@ contract Election {
     // address is the account number.
     mapping(address => bool) public voters;
 
+    // Store accounts that have voted
+    // address is the account number.
+    mapping(address => string) public candidateSelected;
+
     // Store Candidates
     // Fetch Candidates
     mapping(uint => Candidate) public candidates;
@@ -44,6 +48,7 @@ contract Election {
         // record that voter has voted
         // msg.sender is the user account number.
         voters[msg.sender] = true;
+        candidateSelected[msg.sender] = candidates[_candidateId].name;
 
         // update candidate vote Count
         candidates[_candidateId].voteCount++;

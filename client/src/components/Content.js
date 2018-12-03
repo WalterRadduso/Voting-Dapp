@@ -14,7 +14,12 @@ class Content extends Component {
 
                     <hr/>
 
-                    <Vote hasVoted={this.props.hasVoted} castVote={this.props.castVote} userVote={this.props.userVote} />
+                    <Vote
+                        candidates={this.props.candidates}
+                        hasVoted={this.props.hasVoted}
+                        castVote={this.props.castVote}
+                        userVote={this.props.userVote}
+                    />
                 </div>
 
                 <Footer account={this.props.account} />

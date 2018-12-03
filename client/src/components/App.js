@@ -23,12 +23,13 @@ class App extends Component {
             hasVoted: false,
             loading: true,
             voting: false,
-            electionInstance: null
+            electionInstance: null,
+            userVote: ""
         };
 
-        // this.watchEvents = this.watchEvents.bind(this);
         this.castVote = this.castVote.bind(this);
         this.countCandidates = this.countCandidates.bind(this);
+        this.checkUserVote = this.checkUserVote.bind(this);
     }
 
     connect = async () => {
@@ -43,8 +44,7 @@ class App extends Component {
             const election = truffleContract(ElectionContract);
             election.setProvider(web3.currentProvider);
 
-            // Set web3, accounts, and contract to the state, and then proceed with an
-            // example of interacting with the contract's methods.
+            // Set web3, accounts, and contract to the state, and then return those values.
             this.setState({web3, accounts, election});
 
             return({web3, accounts, election});
@@ -59,33 +59,35 @@ class App extends Component {
     };
 
     async componentDidMount() {
+        // Connect to the Election Contract.
         let connection = await this.connect();
 
+        // Get the account of the user.
         let account = await connection.web3.eth.getCoinbase();
 
         this.setState({account});
 
+        // Create an instance of the Election contract.
         let electionInstance = await connection.election.deployed();
 
         this.setState({electionInstance});
 
+        // Get the candidates and his votes.
         await this.countCandidates();
 
+        // Get if the actual user already vote.
         let hasVoted = await electionInstance.voters(this.state.account);
 
         this.setState({hasVoted, loading: false});
+
+        this.checkUserVote();
     };
 
-    // watchEvents() {
-    //     // Trigger event when vote is counted, not when component renders
-    //     this.state.electionInstance.votedEvent({}, {
-    //         fromBlock: 0,
-    //         toBlock: 'latest'
-    //     }).watch((error, event) => {
-    //         this.setState({voting: false});
-    //     });
-    // }
-
+     /**
+     * This function vote for one candidate.
+     * @param candidateId
+     * @returns {Promise<void>}
+     */
     async castVote(candidateId) {
         this.setState({voting: true});
 
@@ -94,8 +96,14 @@ class App extends Component {
         await this.countCandidates();
 
         this.setState({hasVoted: true});
+
+        await this.checkUserVote();
     }
 
+    /**
+     * Get the candidates and his votes.
+     * @returns {Promise<void>}
+     */
     async countCandidates() {
         this.setState({candidates: []});
 
@@ -116,6 +124,14 @@ class App extends Component {
         }
     }
 
+    async checkUserVote() {
+        if (this.state.hasVoted) {
+            let userVote = await this.state.electionInstance.candidateSelected(this.state.account);
+
+            this.setState({userVote});
+        }
+    }
+
     render() {
         return (
             <div className="App">
@@ -129,7 +145,7 @@ class App extends Component {
                         candidates={this.state.candidates}
                         hasVoted={this.state.hasVoted}
                         castVote={this.castVote}
-                        userVote={"Yes"}
+                        userVote={this.state.userVote}
                     />
                 }
             </div>
