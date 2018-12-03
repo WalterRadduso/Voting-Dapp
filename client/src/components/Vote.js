@@ -32,7 +32,7 @@ class vote extends React.Component {
     voteChoose() {
         return (
             <div>
-                You has vote <span>"{this.props.userVote}"</span>
+                You are vote <span>"{this.props.userVote}"</span>
             </div>
         )
     }

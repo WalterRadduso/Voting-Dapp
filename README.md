@@ -19,6 +19,6 @@ First of all, open **Ganache**, then run the following commands in the command l
 
 * **Migrate:** ```truffle migrate```
 
-* **Run dev server:** ```cd client && npm run start```
+* **Run dev server:** ```npm run start```
 
 ---
