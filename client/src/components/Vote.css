@@ -10,3 +10,7 @@
     font-weight: bold;
     color: #10931f;
 }
+
+.display-none {
+    display: none;
+}

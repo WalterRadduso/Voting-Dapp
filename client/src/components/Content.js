@@ -7,20 +7,22 @@ import Footer from "./Footer";
 
 class Content extends Component {
     render() {
+        let {account, candidates, castVote, hasVoted, userVote} = this.props;
+
         return (
             <React.Fragment>
                 <div className="content">
-                    <Candidates candidates={this.props.candidates} />
+                    <Candidates candidates={candidates} />
 
                     <Vote
-                        candidates={this.props.candidates}
-                        hasVoted={this.props.hasVoted}
-                        castVote={this.props.castVote}
-                        userVote={this.props.userVote}
+                        candidates={candidates}
+                        hasVoted={hasVoted}
+                        castVote={castVote}
+                        userVote={userVote}
                     />
                 </div>
 
-                <Footer account={this.props.account} />
+                <Footer account={account} />
             </React.Fragment>
         );
     }

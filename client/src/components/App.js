@@ -20,21 +20,21 @@ class App extends Component {
         super(props);
 
         this.state = {
-            storageValue: 0,
-            web3: null,
             account: null,
-            election: null,
             candidates: [],
+            election: null,
+            electionInstance: null,
             hasVoted: false,
             loading: true,
+            storageValue: 0,
+            userVote: "",
             voting: false,
-            electionInstance: null,
-            userVote: ""
+            web3: null
         };
 
         this.castVote = this.castVote.bind(this);
-        this.countCandidates = this.countCandidates.bind(this);
         this.checkUserVote = this.checkUserVote.bind(this);
+        this.countCandidates = this.countCandidates.bind(this);
     }
 
     connect = async () => {
@@ -136,6 +136,8 @@ class App extends Component {
     }
 
     render() {
+        let {account, candidates, hasVoted, userVote, web3} = this.state;
+
         return (
             <div className="app">
                 <Row>
@@ -145,14 +147,14 @@ class App extends Component {
 
                     <Col span={24} className="app-content">
                         {
-                            !this.state.web3 ?
+                            !web3 ?
                                 <Loading /> :
                                 <Content
-                                    account={this.state.account}
-                                    candidates={this.state.candidates}
-                                    hasVoted={this.state.hasVoted}
+                                    account={account}
+                                    candidates={candidates}
+                                    hasVoted={hasVoted}
                                     castVote={this.castVote}
-                                    userVote={this.state.userVote}
+                                    userVote={userVote}
                                 />
                         }
                     </Col>
