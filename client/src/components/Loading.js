@@ -1,7 +1,10 @@
 import React from "react";
 
-import "./Loading.css";
+// Image
 import loaderImg from "../img/loader.gif";
+
+// CSS
+import "./Loading.css";
 
 const Loading = () => {
     return (

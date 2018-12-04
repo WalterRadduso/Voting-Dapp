@@ -29,7 +29,9 @@ contract Election {
         createCandidate("NO");
     }
 
-
+    /**
+      * Create a new Candidate.
+      */
     function createCandidate(string _name) private {
         candidatesCount++;
         candidates[candidatesCount] = Candidate(candidatesCount, _name, 0);
