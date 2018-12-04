@@ -6,7 +6,6 @@ const Header = () => {
     return (
         <div className="header">
             <h2>Voting System</h2>
-            <hr/>
         </div>
     );
 };

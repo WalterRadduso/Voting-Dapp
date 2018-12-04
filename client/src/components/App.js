@@ -1,13 +1,18 @@
 import React, {Component} from "react";
 
+// Libraries - Contracts
 import ElectionContract from "../contracts/Election.json";
 import getWeb3 from "../utils/getWeb3";
 import truffleContract from "truffle-contract";
 
+// Components
 import Header from "./Header";
 import Loading from "./Loading";
 import Content from "./Content";
+import { Row, Col } from 'antd';
 
+// CSS
+import 'antd/dist/antd.css';
 import "./App.css";
 
 class App extends Component {
@@ -132,20 +137,26 @@ class App extends Component {
 
     render() {
         return (
-            <div className="App">
-                <Header />
+            <div className="app">
+                <Row>
+                    <Col span={24}>
+                        <Header />
+                    </Col>
 
-                {
-                    !this.state.web3 ?
-                    <Loading /> :
-                    <Content
-                        account={this.state.account}
-                        candidates={this.state.candidates}
-                        hasVoted={this.state.hasVoted}
-                        castVote={this.castVote}
-                        userVote={this.state.userVote}
-                    />
-                }
+                    <Col span={24} className="app-content">
+                        {
+                            !this.state.web3 ?
+                                <Loading /> :
+                                <Content
+                                    account={this.state.account}
+                                    candidates={this.state.candidates}
+                                    hasVoted={this.state.hasVoted}
+                                    castVote={this.castVote}
+                                    userVote={this.state.userVote}
+                                />
+                        }
+                    </Col>
+                </Row>
             </div>
         );
     }

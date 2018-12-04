@@ -1,5 +1,11 @@
 import React from 'react'
 
+// Components
+import { Button } from 'antd';
+
+// CSS
+import "./Vote.css";
+
 class vote extends React.Component {
     constructor(props) {
         super(props);
@@ -18,12 +24,14 @@ class vote extends React.Component {
 
                 {this.props.candidates.map((candidate) => {
                     return (
-                        <button
+                        <Button
+                            htmlType="button"
+                            type="primary"
                             key={candidate.id.toNumber()}
                             onClick={() => this.props.castVote(candidate.id.toNumber())}
-                            className='btn btn-primary'>
+                            className='btn-vote'>
                             {candidate.name}
-                        </button>
+                        </Button>
                     )
                 })}
             </div>
@@ -35,8 +43,8 @@ class vote extends React.Component {
      */
     voteChoose() {
         return (
-            <div>
-                You have voted for <span>"{this.props.userVote}"</span>
+            <div className="user-vote">
+                You have voted for <span>{this.props.userVote}</span>.
             </div>
         )
     }

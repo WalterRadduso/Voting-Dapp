@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
+// Components
 import Candidates from "./Candidates";
-
 import Vote from "./Vote";
 import Footer from "./Footer";
 
@@ -11,8 +11,6 @@ class Content extends Component {
             <React.Fragment>
                 <div className="content">
                     <Candidates candidates={this.props.candidates} />
-
-                    <hr/>
 
                     <Vote
                         candidates={this.props.candidates}
