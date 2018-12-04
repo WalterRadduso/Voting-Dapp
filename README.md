@@ -13,9 +13,9 @@ In order to build our dApp, we need a few dependencies first.
 ---
 
 ### Initialize the project
-First of all, open **Ganache**, then run the following commands in the command line:
+First of all, open **Ganache** and configurate **MetaMask** in Chrome, then run the following commands in the command line:
 
-* **Dependencies:** ```cd client && npm install```
+* **Dependencies:** ```cd client && npm install && cd ..```
 
 * **Compile:** ```truffle compile```
 
