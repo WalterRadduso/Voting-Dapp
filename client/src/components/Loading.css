@@ -1,0 +1,15 @@
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.loading p {
+    margin: 0;
+}
+
+.loading img {
+    margin-left: 5px;
+    width: 14px;
+}

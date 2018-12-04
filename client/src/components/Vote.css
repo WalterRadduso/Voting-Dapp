@@ -1,0 +1,16 @@
+.btn-vote {
+    margin: 0 10px;
+}
+
+.user-vote {
+    color: #000;
+}
+
+.user-vote span {
+    font-weight: bold;
+    color: #10931f;
+}
+
+.display-none {
+    display: none;
+}
