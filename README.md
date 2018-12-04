@@ -15,6 +15,8 @@ In order to build our dApp, we need a few dependencies first.
 ### Initialize the project
 First of all, open **Ganache**, then run the following commands in the command line:
 
+* **Dependencies:** ```cd client && npm install```
+
 * **Compile:** ```truffle compile```
 
 * **Migrate:** ```truffle migrate```

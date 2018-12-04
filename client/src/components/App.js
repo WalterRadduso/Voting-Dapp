@@ -105,14 +105,12 @@ class App extends Component {
      * @returns {Promise<void>}
      */
     async countCandidates() {
-        this.setState({candidates: []});
-
         let candidatesCount = await this.state.electionInstance.candidatesCount();
+
+        let candidates = [];
 
         for (let i = 1; i <= candidatesCount; i++) {
             let candidate = await this.state.electionInstance.candidates(i);
-
-            let candidates = [...this.state.candidates];
 
             candidates.push({
                 id: candidate[0],
